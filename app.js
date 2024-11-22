@@ -1,9 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const rootDir=require('./util/util');
+const rootDir = require("./util/util");
 const { userRouter } = require("./Routers/user");
 const { hostRouter } = require("./Routers/host");
+const { error } = require("./controllers/errorcontroller");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -12,6 +13,7 @@ app.use(express.static(path.join(rootDir, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(userRouter);
 app.use(hostRouter);
+app.use(error);
 
 const PORT = 3004;
 app.listen(PORT, () => {

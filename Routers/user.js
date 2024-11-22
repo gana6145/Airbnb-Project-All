@@ -1,10 +1,9 @@
-const express=require('express');
-const { homes } = require('./host');
-const userRouter=express.Router();
+const express = require("express");
+const { homes } =require('../controllers/hostcontroller');
 
+const { gethome } = require("../controllers/usercontroller");
+const userRouter = express.Router();
 
-userRouter.get('/',(req,res,next)=>{
-  res.render('welcome',{homes:homes});
-})
+userRouter.get("/",gethome);
 
-exports.userRouter=userRouter;
+exports.userRouter = userRouter;
