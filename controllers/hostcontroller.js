@@ -1,13 +1,14 @@
-
-const homes = [];
+const Home = require("../models/home");
+const homes = require("../models/home");
 
 exports.addedhome = (req, res, next) => {
-  homes.push(req.body);
+  const {housename,price,location }= req.body;
+  const newHome =new Home(housename,price,location);
+  newHome.save();
+
   res.render("home", { title: "Home added" });
 };
 
 exports.addhome = (req, res, next) => {
   res.render("add-home", { title: "Add your home" });
 };
-
-exports.homes = homes;
