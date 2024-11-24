@@ -1,5 +1,5 @@
 const Home = require("../models/home");
-const homes = require("../models/home");
+
 
 exports.addedhome = (req, res, next) => {
   const {housename,price,location }= req.body;

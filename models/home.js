@@ -1,32 +1,32 @@
-const fs =require('fs');
-const path=require('path');
-const rootDir =require('../util/util');
+const fs = require("fs");
+const path = require("path");
+const rootDir = require("../util/util");
+const homefile = path.join(rootDir, "data", "homes.json");
 
-
-
-
-
-const homes = [];
 module.exports = class Home {
-  constructor(housename,price,location) {
+  constructor(housename, price, location) {
     this.housename = housename;
-    this.price=price;
-    this.location=location;
-    
+    this.price = price;
+    this.location = location;
   }
-  save() {
-    homes.push(this);
-    const homefile=path.join(rootDir,'data','homes.json');
-    fs.writeFile(homefile,JSON.stringify(homes),error=>{
-      if(error){
-        console.log(error)
+  save(callback) {
+    Home.fetchAll((homes) => {
+      if (typeof callback !== 'function') {
+        console.log('No callback function provided.');
+        callback = () => {};  // Default to a no-op callback
       }
-
-    })
+      homes.push(this);
+      fs.writeFile(homefile, JSON.stringify(homes), callback);
+    });
   }
-  static fetchAll() {
-    return homes;
+  static fetchAll(callback) {
+    fs.readFile(homefile, (err, data) => {
+      if (err) {
+        console.log(err);
+        callback([]);
+      } else {
+        callback(JSON.parse(data));
+      }
+    });
   }
 };
-
-exports.homes = homes;

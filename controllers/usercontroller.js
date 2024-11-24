@@ -1,6 +1,8 @@
-const Home =require('../models/home')
+const Home = require("../models/home");
 
-exports.gethome = (req,res,next)=>{
-  let homes= Home.fetchAll();
-  
-  res.render('welcome',{homes:homes})};
+exports.gethome = (req, res, next) => {
+  Home.fetchAll(homes => {
+    
+    res.render("welcome", { homes: homes });
+  });
+};
