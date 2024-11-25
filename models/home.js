@@ -11,9 +11,10 @@ module.exports = class Home {
   }
   save(callback) {
     Home.fetchAll((homes) => {
-      if (typeof callback !== 'function') {
+      this.id=Math.random().toString();
+     if (typeof callback !== 'function') {
         console.log('No callback function provided.');
-        callback = () => {};  // Default to a no-op callback
+        callback = () => {};  
       }
       homes.push(this);
       fs.writeFile(homefile, JSON.stringify(homes), callback);

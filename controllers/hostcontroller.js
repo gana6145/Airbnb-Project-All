@@ -6,9 +6,9 @@ exports.addedhome = (req, res, next) => {
   const newHome =new Home(housename,price,location);
   newHome.save();
 
-  res.render("home", { title: "Home added" });
+  res.render("host/home", { title: "Home added" });
 };
 
 exports.addhome = (req, res, next) => {
-  res.render("add-home", { title: "Add your home" });
+  res.render("host/add-home", { title: "Add your home" });
 };
