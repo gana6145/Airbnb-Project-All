@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIRBNB - Home Details</title>
+  
+  <!-- Bootstrap CDN CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <!-- Navigation Include -->
+  <%- include('../partials/nav') %>
+
+  <!-- Full Page Home Details Section -->
+  <div class="container mt-4">
+    <div class="card shadow-lg mb-4">
+      <!-- Home Image -->
+      <img src="<%= home.imageUrl || 'https://via.placeholder.com/350x200' %>" class="card-img-top" alt="<%= home.housename %>" style="height: 350px; object-fit: cover;">
+
+      <div class="card-body">
+        <!-- Home Title -->
+        <h5 class="card-title text-center mb-3"><%= home.housename %></h5>
+
+        <!-- Home Price and Location -->
+        <p class="card-text"><strong>Price:</strong> Rs: <%= home.price %></p>
+        <p class="card-text"><strong>Location:</strong> <%= home.location %></p>
+
+        <!-- Home Description (Paragraph with 30 words) -->
+        <h6>Description:</h6>
+        <p class="card-text">
+          This charming home offers comfort and style, with a spacious living area, modern kitchen, and serene surroundings perfect for relaxing or entertaining guests. A cozy retreat!
+        </p>
+
+        <!-- Characteristics Section (HTML List) -->
+        <h6>Characteristics:</h6>
+        <ul>
+          <li><strong>Bedrooms:</strong> 3</li>
+          <li><strong>Bathrooms:</strong> 2</li>
+          <li><strong>Size:</strong> 1500 sq ft</li>
+          <li><strong>Pet Friendly:</strong> Yes</li>
+          <li><strong>Wi-Fi:</strong> Available</li>
+          <li><strong>Parking:</strong> 2 spaces</li>
+        </ul>
+        
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+          <a href="/contact/<%= home.id %>" class="btn btn-primary">Contact Host</a>
+          <a href="/book/<%= home.id %>" class="btn btn-success">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap CDN JavaScript (includes Popper.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

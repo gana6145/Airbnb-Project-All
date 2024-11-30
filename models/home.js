@@ -30,4 +30,11 @@ module.exports = class Home {
       }
     });
   }
+  static findById(homeid,callback){
+    Home.fetchAll(homes=>{
+     const home= homes.find(home=> home.id === homeid);
+     callback(home);
+    })
+
+  }
 };
