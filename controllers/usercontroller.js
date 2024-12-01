@@ -9,6 +9,11 @@ exports.gethomes = (req, res, next) => {
   Home.fetchAll((homes) => {
     res.render("user/homes", { homes: homes });
   });
+  exports.addfavourite=(req,res,next) =>{
+    Home.fetchAll((homes) => {
+      res.render("user/favourite", { home: homes });
+    });
+  }
 };
 exports.gethomedetail = (req, res, next) => {
   const homeid = req.params.homeid;
